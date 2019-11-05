@@ -1,4 +1,4 @@
-from decimal import *
+from decimal import Decimal, ROUND_HALF_UP
 
 def st10(income):
 	print('Your tax bracket is: 10%')
@@ -189,11 +189,10 @@ while c.lower() == 'c':
 			tax = mst35(income)
 		elif income > 510300.00:
 			tax = mst37(income)
-	getcontext().prec = 3
-	print(f'Your effective tax rate is: {Decimal(100.00)*Decimal(tax)/Decimal(pre_deducted_income)}%')
-	getcontext().prec = 2
-	print(f'Your tax is: ${Decimal(tax)}')
-	dispInc = pre_deducted_income-tax
-	print(f'Your income after tax is: ${Decimal(dispInc)}')
+	effectiveTax = (100.00)*(tax)/(pre_deducted_income)
+	print('Your effective tax rate is: {:.4f}%'.format(effectiveTax))
+	print('Your tax is: ${:.2f}'.format(tax))
+	dispInc = (pre_deducted_income-tax)
+	print('Your income after tax is: ${:.2f}'.format(dispInc))
 	c = input("Enter 'c' to restart\n")
 	filing = 'n'
